@@ -1,7 +1,7 @@
 {
-  "name": "@tlouvet/logger-console",
+  "name": "@tlouvet/color-logger",
   "version": "0.1.0",
-  "description": "Add color to your console logs",
+  "description": "Add color to your console.log (front & back)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
