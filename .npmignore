@@ -4,3 +4,4 @@ test
 *.log
 dist/*.map
 yarn.lock
+tsconfig.json

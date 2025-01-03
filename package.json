@@ -10,11 +10,11 @@
     "Readme.md"
   ],
   "keywords": [
-    "validation",
-    "typescript",
-    "Javascript",
-    "frontend",
-    "backend"
+    "logger",
+    "console",
+    "color",
+    "javascript",
+    "node"
   ],
   "author": "Thomas Louvet thomas@tlouvet.com",
   "license": "MIT",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TLouvet/AnotherLoggerLib.git"
+    "url": "git+https://github.com/TLouvet/AnotherLoggerLib.git"
   },
   "bugs": {
     "url": "https://github.com/TLouvet/AnotherLoggerLib/issues"
