@@ -59,7 +59,7 @@ Logger.config({
     success: { active: true, prefix: '[SUCCESS]', color: '\x1b[32m' }, // Green
     warning: { active: true, prefix: '[WARNING]', color: '\x1b[33m' }, // Yellow
     error: { active: true, prefix: '[ERROR]', color: '\x1b[31m' }, // Red
-    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[31m' }, // Red
+    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[35m' }, // Magenta
   },
 });
 ```
@@ -81,6 +81,23 @@ Logger.config({
   showLevelPrefix: false, // Disable prefix if you don't want to see them
 });
 ```
+
+### 🎨 **Color Customization**
+
+ColorLogger uses ANSI escape codes for coloring your logs. You can customize the colors for each log level by modifying the `color` property in the configuration.
+
+#### Common ANSI Color Codes
+
+| Color   | Code       |
+| ------- | ---------- |
+| Black   | `\x1b[30m` |
+| Red     | `\x1b[31m` |
+| Green   | `\x1b[32m` |
+| Yellow  | `\x1b[33m` |
+| Blue    | `\x1b[34m` |
+| Magenta | `\x1b[35m` |
+| Cyan    | `\x1b[36m` |
+| White   | `\x1b[37m` |
 
 ### Example Output
 

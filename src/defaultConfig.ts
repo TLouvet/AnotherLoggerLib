@@ -30,7 +30,7 @@ export const defaultLoggerConfig: LoggerConfig = {
     critical: {
       active: true,
       prefix: '[CRITICAL]',
-      color: '\x1b[31m',
+      color: '\x1b[35m',
     },
   },
 } as const;
