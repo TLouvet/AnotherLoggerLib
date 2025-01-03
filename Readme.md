@@ -22,7 +22,7 @@ This lightweight, easy-to-use logger will change your life (or at least your log
 Install via npm:
 
 ```bash
-npm install @tlouvet/color-logger
+npm install @cptn-tlouvet/color-logger
 ```
 
 ### 📚 **Getting Started**
@@ -30,7 +30,7 @@ npm install @tlouvet/color-logger
 #### Import the Logger
 
 ```typescript
-import { Logger } from '@your-username/color-logger';
+import { Logger } from '@cptn-tlouvet/color-logger';
 
 Logger.info("Here's some information!");
 Logger.success('Woohoo! Everything worked!');
