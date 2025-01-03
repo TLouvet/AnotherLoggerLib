@@ -1,0 +1,39 @@
+{
+  "name": "@tlouvet/logger-console",
+  "version": "0.1.0",
+  "description": "Add color to your console logs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist",
+    "Readme.md"
+  ],
+  "keywords": [
+    "validation",
+    "typescript",
+    "Javascript",
+    "frontend",
+    "backend"
+  ],
+  "author": "Thomas Louvet thomas@tlouvet.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --minify",
+    "test": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TLouvet/AnotherLoggerLib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TLouvet/AnotherLoggerLib/issues"
+  },
+  "homepage": "https://github.com/TLouvet/AnotherLoggerLib#readme"
+}
