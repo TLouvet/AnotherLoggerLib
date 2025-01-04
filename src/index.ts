@@ -19,7 +19,6 @@ export class Logger {
 
   static config(options: DeepPartial<LoggerConfig>) {
     this._config = deepMerge(this._config, options);
-    return this;
   }
 
   static usePalette(palette: string) {
@@ -38,8 +37,6 @@ export class Logger {
         critical: { color: colorPalette.critical },
       },
     });
-
-    return this;
   }
 
   static neutral(message: string) {

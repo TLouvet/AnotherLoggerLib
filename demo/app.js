@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
-
   const navLinks = document.querySelectorAll("nav a");
   const views = document.querySelectorAll(".view");
 
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const lang = document.getElementById("lang-select").value;
     const showPrefix = document.getElementById("show-prefix").checked;
     const timestampsActive = document.getElementById("timestamps-active").checked;
-    const useTrueColorPalette = document.getElementById("use-trueColorPalette").checked;
 
     // Appliquer la configuration au logger
     const config = {
@@ -47,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showLevelPrefix: showPrefix,
     };
 
-    Logger.usePalette(useTrueColorPalette ? "trueColor" : "common").config(config);
-
     // Générer quelques logs pour tester
     Logger.info("Info log with your configuration!");
     Logger.success("Success log with your configuration!");
@@ -57,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Logger.critical("Critical log with your configuration!");
 
     // Mettre à jour le bloc de configuration généré
-    generatedConfig.textContent = `Logger.useColorPalette(${useTrueColorPalette ? "'trueColor'" : "'common'"}).config(${JSON.stringify(config, null, 2)});`;
+    generatedConfig.textContent = `Logger.config(${JSON.stringify(config, null, 2)});`;
 
     // Forcer un redimensionnement si nécessaire
     generatedConfig.style.height = "auto"; // Réinitialise la hauteur
