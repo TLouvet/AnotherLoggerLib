@@ -40,9 +40,12 @@ Logger.success('Woohoo! Everything worked!');
 Logger.warn('Careful now, this is a warning.');
 Logger.error('Uh oh, something went wrong.');
 Logger.critical('🚨 This is critical!');
+Logger.neutral('standard console.log'); // replacement for standard console.log()
 ```
 
 ✨ Your terminal will thank you with organized, colorful logs! 🌈
+
+---
 
 ### ⚙️ Configuration
 
@@ -85,6 +88,8 @@ Logger.config({
   showLevelPrefix: false, // Enable/disable prefix
 });
 ```
+
+---
 
 ### 🎨 **Color Customization**
 
@@ -160,7 +165,7 @@ You can opt to use colors in a hex format instead of an ANSI escape code. Here a
 | Cyan    | `#00FFFF` |
 | White   | `#FFFFFF` |
 
-### RGB Color (v0.3+)
+#### RGB Color (v0.3+)
 
 The TrueColor system works as follows: `\x1b[38;2;${red};${green};${blue}m` so when we use Hex colors, we first transform them into their RGB versions and then create the
 TrueColor value associated.
@@ -187,6 +192,8 @@ For reference, here are the inputs for the basic colors:
 | Magenta | `[255,0,255]`   |
 | Cyan    | `[0,255,255]`   |
 | White   | `[255,255,255]` |
+
+---
 
 ### Example Output
 

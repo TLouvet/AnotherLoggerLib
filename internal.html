@@ -14,7 +14,7 @@
     // Please note that you need to build it first :) 
     import { Logger } from './dist/index.mjs';
 
-    console.log("Base values")
+    Logger.neutral("Base values")
     Logger.info("Hello from Color Logger!");
     Logger.success("It works in the browser too!");
     Logger.warn("Here is some warning");
@@ -35,7 +35,7 @@
       }
     });
 
-    console.log("swapping to true color")
+    Logger.neutral("swapping to true color")
     Logger.usePalette("trueColor")
     Logger.info("Hello from Color Logger!");
     Logger.success("It works in the browser too!");
@@ -54,7 +54,7 @@
       },
     });
 
-    console.log("Using Hex colors")
+    Logger.neutral("Using Hex colors")
     Logger.info("Hello from Color Logger!");
     Logger.success("It works in the browser too!");
     Logger.warn("Here is some warning");
@@ -62,7 +62,7 @@
     Logger.critical("🚨 This is critical!");
 
     // RGB
-    console.log("Using RGB")
+    Logger.neutral("Using RGB")
     Logger.config({
       levels: {
         info: { color: ["0", "255", "255"] },
