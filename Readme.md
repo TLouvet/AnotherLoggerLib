@@ -160,7 +160,7 @@ You can opt to use colors in a hex format instead of an ANSI escape code. Here a
 | Cyan    | `#00FFFF` |
 | White   | `#FFFFFF` |
 
-### RGB Color (v0.3+) -- Coming Soon
+### RGB Color (v0.3+)
 
 The TrueColor system works as follows: `\x1b[38;2;${red};${green};${blue}m` so when we use Hex colors, we first transform them into their RGB versions and then create the
 TrueColor value associated.
