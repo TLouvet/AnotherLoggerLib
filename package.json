@@ -1,6 +1,6 @@
 {
   "name": "@cptn-tlouvet/color-logger",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Add color to your console.log (front & back)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
