@@ -19,6 +19,7 @@ export class Logger {
 
   static config(options: DeepPartial<LoggerConfig>) {
     this._config = deepMerge(this._config, options);
+    return this;
   }
 
   static usePalette(palette: string) {
@@ -70,20 +71,12 @@ export class Logger {
       return;
     }
 
-    console.log(this.colorize(level, this.formatTextMessage(level, message)));
+    const { color, bg } = this._config.levels[level];
+    console.log(this.colorFormatter.colorize(this.formatTextMessage(level, message), color, bg));
   }
 
   private static isLevelActive(level: ELogLevel) {
     return this._config.levels[level].active;
-  }
-
-  private static colorize(level: ELogLevel, message: string): string {
-    const { color, bg } = this._config.levels[level];
-
-    const formattedColor = this.colorFormatter.getAnsiTextColor(color);
-    const formattedBG = this.colorFormatter.getAnsiBgColor(bg);
-
-    return `${formattedBG}${formattedColor}${message}\x1b[0m`;
   }
 
   private static formatTextMessage(level: ELogLevel, message: string) {

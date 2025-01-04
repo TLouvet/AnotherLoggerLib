@@ -5,35 +5,21 @@ import { RGBColor } from '../src/types';
 describe('Color manipulation', () => {
   const formatter = new AnsiColorFormatter();
 
-  it('should translate rgb to ANSI text TrueColor', () => {
-    const red: RGBColor = [255, 0, 0];
-    const cyan: RGBColor = [0, 255, 255];
+  it('should translate rgb to ANSI TrueColor', () => {
+    const text: RGBColor = [255, 0, 0];
+    const bg: RGBColor = [0, 255, 255];
+    const message = 'Hello World';
+    const expected = '\x1b[48;2;0;255;255m\x1b[38;2;255;0;0mHello World\x1b[0m';
 
-    expect(formatter.getAnsiTextColor(red)).toBe('\x1b[38;2;255;0;0m');
-    expect(formatter.getAnsiTextColor(cyan)).toBe('\x1b[38;2;0;255;255m');
+    expect(formatter.colorize(message, text, bg)).toBe(expected);
   });
 
-  it('should translate hex to ANSI text TrueColor', () => {
-    const red = '#FF0000';
-    const cyan = '#00FFFF';
+  it('should translate hex to ANSI TrueColor', () => {
+    const text = '#FF0000';
+    const bg = '#00FFFF';
+    const message = 'Hello World';
+    const expected = '\x1b[48;2;0;255;255m\x1b[38;2;255;0;0mHello World\x1b[0m';
 
-    expect(formatter.getAnsiTextColor(red)).toBe('\x1b[38;2;255;0;0m');
-    expect(formatter.getAnsiTextColor(cyan)).toBe('\x1b[38;2;0;255;255m');
-  });
-
-  it('should translate rbg to ANSI bg TrueColor', () => {
-    const red: RGBColor = [255, 0, 0];
-    const cyan: RGBColor = [0, 255, 255];
-
-    expect(formatter.getAnsiBgColor(red)).toBe('\x1b[48;2;255;0;0m');
-    expect(formatter.getAnsiBgColor(cyan)).toBe('\x1b[48;2;0;255;255m');
-  });
-
-  it('should translate hex to ANSI bg TrueColor', () => {
-    const red = '#FF0000';
-    const cyan = '#00FFFF';
-
-    expect(formatter.getAnsiBgColor(red)).toBe('\x1b[48;2;255;0;0m');
-    expect(formatter.getAnsiBgColor(cyan)).toBe('\x1b[48;2;0;255;255m');
+    expect(formatter.colorize(message, text, bg)).toBe(expected);
   });
 });

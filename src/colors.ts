@@ -4,12 +4,11 @@ export class AnsiColorFormatter {
   private readonly ANSI_TRUE_COLOR_PREFIX = '38';
   private readonly ANSI_TRUE_BG_PREFIX = '48';
 
-  getAnsiTextColor(color: string | RGBColor = '') {
-    return this.formatColor(color, 'color');
-  }
+  colorize(message: string, color: string | RGBColor, bg: string | RGBColor = ''): string {
+    const formattedColor = this.formatColor(color, 'color');
+    const formattedBG = this.formatColor(bg, 'bg');
 
-  getAnsiBgColor(color: string | RGBColor = '') {
-    return this.formatColor(color, 'bg');
+    return `${formattedBG}${formattedColor}${message}\x1b[0m`;
   }
 
   private formatColor(color: string | RGBColor, type: 'bg' | 'color' = 'color') {

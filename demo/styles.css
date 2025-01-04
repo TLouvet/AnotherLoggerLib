@@ -1,0 +1,381 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+aside {
+  width: 250px;
+  background-color: #444;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+nav ul {
+  padding-top: 30px;
+  list-style: none;
+}
+
+nav ul li {
+  margin-bottom: 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bcd4;
+}
+
+main {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block; /* Afficher uniquement la vue active */
+}
+
+/* Introduction styles */
+.view h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #00bcd4;
+}
+
+.view h3 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.view p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.view ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.view ul li {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.view code {
+  background-color: #f4f4f4;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Switch container */
+.language-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Language links */
+.language-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #444;
+  transition: color 0.3s ease;
+}
+
+.language-link:hover {
+  color: #00bcd4;
+}
+
+/* Toggle container */
+.toggle {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  background-color: #ddd;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle:hover {
+  background-color: #ccc;
+}
+
+/* Circle inside the toggle */
+.toggle-circle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+/* Toggle active state (English selected) */
+.toggle.active {
+  background-color: #00bcd4;
+}
+
+.toggle.active .toggle-circle {
+  transform: translateX(25px);
+}
+
+/* Styles for code blocks */
+.code-block {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+  overflow-x: auto;
+}
+
+/* Form styles */
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+form select,
+form input[type='checkbox'] {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 10px 15px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0197a8;
+}
+
+#generated-config {
+  display: block;
+  background-color: #eef;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+  overflow-x: auto; /* Permet le défilement horizontal */
+  white-space: pre-wrap; /* Permet de renvoyer à la ligne */
+  word-wrap: break-word; /* Gère les longues lignes */
+  min-height: 50px; /* Hauteur minimale pour éviter un aspect écrasé */
+  transition: all 0.3s ease; /* Animation douce lors du changement de hauteur */
+}
+
+/* Styles for the functions view */
+.view h3 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.view pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.view ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.view ul li {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Styles for the color table */
+.color-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+.color-table th,
+.color-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.color-table th {
+  background-color: #f4f4f4;
+}
+
+.color-table td {
+  background-color: #fff;
+}
+
+.color-table td code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #eef;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.color-table td:nth-child(3) {
+  font-weight: bold;
+}
+
+/* Styling for the form and log levels */
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+fieldset legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.log-level {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.log-level h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+label input {
+  margin-left: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0197a8;
+}
+
+/* Grille pour les niveaux de log */
+.log-level-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Style des éléments individuels */
+.log-level {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.log-level h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.log-level label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.log-level input {
+  margin-left: 10px;
+}

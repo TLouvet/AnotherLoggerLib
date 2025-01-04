@@ -10,7 +10,7 @@ export const defaultPalette: Record<string, Record<string, string | RGBColor>> =
   },
   trueColor: {
     info: '\x1b[38;2;0;255;255m',
-    success: '\x1b[38;2;72;201;176m',
+    success: '\x1b[38;2;72;255;165m',
     warning: '\x1b[38;2;255;165;0m',
     error: '\x1b[38;2;244;67;54m',
     critical: '\x1b[38;2;255;0;255m',
