@@ -5,3 +5,5 @@ test
 dist/*.map
 yarn.lock
 tsconfig.json
+*.html
+TODO

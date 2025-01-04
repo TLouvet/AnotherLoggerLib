@@ -4,6 +4,8 @@ Are you tired of writing **`console.log("here")`** and feeling like your logs ar
 
 This lightweight, easy-to-use logger will change your life (or at least your logging experience). Add **colors**, **log levels**, and a touch of **style** to your console outputs! Works like magic in both **Node.js** and the **browser**. ✨
 
+P.S: Does not replace a debugging session with the debugger.
+
 ---
 
 ## Why ColorLogger?
@@ -19,10 +21,11 @@ This lightweight, easy-to-use logger will change your life (or at least your log
 
 ## Installation
 
-Install via npm:
+Install via npm or yarn:
 
 ```bash
 npm install @cptn-tlouvet/color-logger
+yarn add @cptn-tlouvet/color-logger
 ```
 
 ### 📚 **Getting Started**
@@ -55,11 +58,11 @@ Logger.config({
     lang: 'en', // Locale for the timestamp
   },
   levels: {
-    info: { active: true, prefix: '[INFO]', color: '\x1b[34m' }, // Blue
-    success: { active: true, prefix: '[SUCCESS]', color: '\x1b[32m' }, // Green
-    warning: { active: true, prefix: '[WARNING]', color: '\x1b[33m' }, // Yellow
-    error: { active: true, prefix: '[ERROR]', color: '\x1b[31m' }, // Red
-    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[35m' }, // Magenta
+    info: { active: true, prefix: '[INFO]', color: '\x1b[34m' }, // Base ANSI Colors
+    success: { active: true, prefix: '[SUCCESS]', color: '\x1b[32m' },
+    warning: { active: true, prefix: '[WARNING]', color: '\x1b[33m' },
+    error: { active: true, prefix: '[ERROR]', color: '\x1b[31m' },
+    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[38;2;255;0;255m' }, // TrueColor (24-bit ANSI)
   },
 });
 ```
@@ -73,12 +76,13 @@ Logger.config({
   levels: {
     info: { active: false }, // Turn off info logs - who reads them anyway ?
     error: { prefix: '[ERR]' }, // Customize prefix
+    warn: { color: '#FFFF00' }, // Change the color
   },
   timestamp: {
-    lang: 'fr', // Display timestamps in French
+    lang: 'fr', // Display timestamps in French (baguette not included)
     active: true, // Enable/disable timestamps
   },
-  showLevelPrefix: false, // Disable prefix if you don't want to see them
+  showLevelPrefix: false, // Enable/disable prefix
 });
 ```
 
@@ -87,6 +91,8 @@ Logger.config({
 ColorLogger uses ANSI escape codes for coloring your logs. You can customize the colors for each log level by modifying the `color` property in the configuration.
 
 #### Common ANSI Color Codes
+
+These colors should work with every terminal
 
 | Color   | Code       |
 | ------- | ---------- |
@@ -98,6 +104,62 @@ ColorLogger uses ANSI escape codes for coloring your logs. You can customize the
 | Magenta | `\x1b[35m` |
 | Cyan    | `\x1b[36m` |
 | White   | `\x1b[37m` |
+
+#### TrueColor
+
+It is possible to have more detailed colors with the TrueColor system which works as follows: `\x1b[38;2;${red};${green};${blue}m`.
+
+For each color, set an input between 0 and 255. For reference, here are the basic colors translated with this system:
+
+| Color   | Code                     |
+| ------- | ------------------------ |
+| Black   | `\x1b[38;2;0;0;0m`       |
+| Red     | `\x1b[38;2;255;0;0m`     |
+| Green   | `\x1b[38;2;0;255;0m`     |
+| Yellow  | `\x1b[38;2;255;255;0m`   |
+| Blue    | `\x1b[38;2;0;0;255m`     |
+| Magenta | `\x1b[38;2;255;0;255m`   |
+| Cyan    | `\x1b[38;2;0;255;255m`   |
+| White   | `\x1b[38;2;255;255;255m` |
+
+Please note that depending on where you use the package (browser vs terminal), it is possible that TrueColor is not accepted (I'm looking at you old Powershell)
+
+#### Hex Color (v0.2+)
+
+Let's face it, ANSI system is probably not something we use a lot. There is also a great chance that you use this package in a frontend context or with a modern enough terminal, so you'll be looking at something that, as stated previously, supports TrueColor ANSI 24 bits. And the good news is: we can easily convert Hex to TrueColor, since we can convert Hex to RGB and then place this RGB into our ANSI TrueColor code.
+
+You can opt to use colors in a hex format instead of an ANSI escape code. Here are the same basic colors, translated in Hex:
+
+| Color   | Code      |
+| ------- | --------- |
+| Black   | `#000000` |
+| Red     | `#FF0000` |
+| Green   | `#00FF00` |
+| Yellow  | `#FFFF00` |
+| Blue    | `#0000FF` |
+| Magenta | `#FF00FF` |
+| Cyan    | `#00FFFF` |
+| White   | `#FFFFFF` |
+
+### RGB Color (v0.3+) -- Coming Soon
+
+The TrueColor system works as follows: `\x1b[38;2;${red};${green};${blue}m` so when we use Hex colors, we first transform them into their RGB versions and then create the
+TrueColor value associated.
+
+Naturally, you can bypass this step by using RGB system for your colors in the first place. The expected syntax is an array with 3 entries corresponding to red, green and blue.
+
+For reference, here are the inputs for the basic colors:
+
+| Color   | Code            |
+| ------- | --------------- |
+| Black   | `[0,0,0]`       |
+| Red     | `[255,0,0]`     |
+| Green   | `[0,255,0]`     |
+| Yellow  | `[255,255,0]`   |
+| Blue    | `[0,0,255]`     |
+| Magenta | `[255,0,255]`   |
+| Cyan    | `[0,255,255]`   |
+| White   | `[255,255,255]` |
 
 ### Example Output
 

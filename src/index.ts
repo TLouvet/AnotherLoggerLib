@@ -1,6 +1,6 @@
 import { defaultLoggerConfig } from './defaultConfig';
 import { LoggerConfig } from './types';
-import { deepMerge, DeepPartial } from './utils';
+import { deepMerge, DeepPartial, hexToAnsi, isHexColor } from './utils';
 
 enum ELogLevel {
   WARNING = 'warning',
@@ -74,6 +74,8 @@ export class Logger {
   }
 
   private static colorize(level: ELogLevel, message: string): string {
-    return `${this._config.levels[level].color}${message}\x1b[0m`;
+    const { color } = this._config.levels[level];
+
+    return `${isHexColor(color) ? hexToAnsi(color) : color}${message}\x1b[0m`;
   }
 }
