@@ -15,6 +15,7 @@ type LogLevel = 'info' | 'success' | 'warning' | 'error' | 'critical';
 
 type LogConfig = {
   color: string | RGBColor;
+  bg?: string | RGBColor;
   active: boolean;
   prefix: string;
 };

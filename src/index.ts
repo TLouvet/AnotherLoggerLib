@@ -1,5 +1,5 @@
 import { defaultLoggerConfig, defaultPalette } from './defaultConfig';
-import { LoggerConfig } from './types';
+import { LoggerConfig, RGBColor } from './types';
 import { deepMerge, DeepPartial, hexToAnsi, isHexColor, rgbToAnsiTrueColor } from './utils';
 
 enum ELogLevel {
@@ -75,6 +75,27 @@ export class Logger {
     return this._config.levels[level].active;
   }
 
+  private static colorize(level: ELogLevel, message: string): string {
+    const { color, bg } = this._config.levels[level];
+
+    const formattedColor = this.formatColor(color);
+    const formattedBG = this.formatColor(bg);
+
+    return `${formattedBG}${formattedColor}${message}\x1b[0m`;
+  }
+
+  private static formatColor(color: string | RGBColor = '') {
+    if (Array.isArray(color)) {
+      return rgbToAnsiTrueColor(...color);
+    }
+
+    if (isHexColor(color)) {
+      return hexToAnsi(color);
+    }
+
+    return color;
+  }
+
   private static formatTextMessage(level: ELogLevel, message: string) {
     const baseMessage = `${this.timestamp()} ${message}`;
 
@@ -95,15 +116,5 @@ export class Logger {
 
   private static prefix(level: ELogLevel) {
     return this._config.levels[level].prefix;
-  }
-
-  private static colorize(level: ELogLevel, message: string): string {
-    const { color } = this._config.levels[level];
-
-    if (Array.isArray(color)) {
-      return `${rgbToAnsiTrueColor(...color)}${message}\x1b[0m`;
-    }
-
-    return `${isHexColor(color) ? hexToAnsi(color) : color}${message}\x1b[0m`;
   }
 }

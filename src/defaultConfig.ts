@@ -28,26 +28,31 @@ export const defaultLoggerConfig: LoggerConfig = {
       active: true,
       prefix: '[INFO]',
       color: defaultPalette.common.info,
+      bg: '',
     },
     success: {
       active: true,
       prefix: '[SUCCESS]',
       color: defaultPalette.common.success,
+      bg: '',
     },
     warning: {
       active: true,
       prefix: '[WARNING]',
       color: defaultPalette.common.warning,
+      bg: '',
     },
     error: {
       active: true,
       prefix: '[ERROR]',
       color: defaultPalette.common.error,
+      bg: '',
     },
     critical: {
       active: true,
       prefix: '[CRITICAL]',
       color: defaultPalette.common.critical,
+      bg: '',
     },
   },
 } as const;

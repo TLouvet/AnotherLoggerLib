@@ -40,7 +40,7 @@ Logger.success('Woohoo! Everything worked!');
 Logger.warn('Careful now, this is a warning.');
 Logger.error('Uh oh, something went wrong.');
 Logger.critical('🚨 This is critical!');
-Logger.neutral('standard console.log'); // replacement for standard console.log()
+Logger.neutral('standard console.log'); // replacement for standard console.log() - v0.4+
 ```
 
 ✨ Your terminal will thank you with organized, colorful logs! 🌈
@@ -61,11 +61,11 @@ Logger.config({
     lang: 'en', // Locale for the timestamp
   },
   levels: {
-    info: { active: true, prefix: '[INFO]', color: '\x1b[36m' },
-    success: { active: true, prefix: '[SUCCESS]', color: '\x1b[32m' },
-    warning: { active: true, prefix: '[WARNING]', color: '\x1b[33m' },
-    error: { active: true, prefix: '[ERROR]', color: '\x1b[31m' },
-    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[35m' },
+    info: { active: true, prefix: '[INFO]', color: '\x1b[36m', bg: '' },
+    success: { active: true, prefix: '[SUCCESS]', color: '\x1b[32m', bg: '' },
+    warning: { active: true, prefix: '[WARNING]', color: '\x1b[33m', bg: '' },
+    error: { active: true, prefix: '[ERROR]', color: '\x1b[31m', bg: '' },
+    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[35m', bg: '' },
   },
 });
 ```
@@ -80,6 +80,7 @@ Logger.config({
     info: { active: false }, // Turn off info logs - who reads them anyway ?
     error: { prefix: '[ERR]' }, // Customize prefix
     warn: { color: '#FFFF00' }, // Change the color
+    critical: { bg: '#FF0000' }, // Show that red background to alert the user - v0.4+
   },
   timestamp: {
     lang: 'fr', // Display timestamps in French (baguette not included)
@@ -192,6 +193,10 @@ For reference, here are the inputs for the basic colors:
 | Magenta | `[255,0,255]`   |
 | Cyan    | `[0,255,255]`   |
 | White   | `[255,255,255]` |
+
+#### Background Color - v0.4+
+
+From v0.4, you can customize the bg property to add a background color. It works the same way as color, ANSI / Hex or RGB accepted.
 
 ---
 
