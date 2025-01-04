@@ -39,6 +39,10 @@ export class Logger {
     return this;
   }
 
+  static neutral(message: string) {
+    console.log(message);
+  }
+
   static info(message: string) {
     this.log(ELogLevel.INFO, message);
   }
