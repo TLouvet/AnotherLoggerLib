@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Logger Example</title>
+</head>
+
+<body>
+  <p>Dev Example - Open your console with F12 or right click on the screen and select "Inspect" r</p>
+  <p>Don't forget to build the project first</p>
+  <script type="module">
+    // Please note that you need to build it first :) 
+    import { Logger } from './dist/index.mjs';
+
+    Logger.info(`${typeof window}`);
+    Logger.config({
+      timestamp: {
+        lang: 'fr'
+      },
+      levels: {
+        info: {
+          prefix: '[DEBUG]'
+        },
+        warning: {
+          prefix: '[ATTENTION]'
+        }
+      }
+    });
+
+    // TrueColor
+    Logger.config({
+      levels: {
+        info: { color: '\x1b[38;2;0;128;255m' }, // Soft blue
+        success: { color: '\x1b[38;2;0;255;128m' }, // Lime green
+        warning: { color: '\x1b[38;2;255;165;0m' }, // Orange
+        error: { color: '\x1b[38;2;255;69;0m' }, // Red-orange
+        critical: { color: '\x1b[38;2;255;0;255m' }, // Magenta
+      },
+    });
+
+
+    Logger.info("Hello from Color Logger!");
+    Logger.success("It works in the browser too!");
+    Logger.warn("Here is some warning");
+    Logger.error("Oof! Something went wrong");
+    Logger.critical("🚨 This is critical!");
+
+    // Hex
+    Logger.config({
+      levels: {
+        info: { color: '#0080FF' },
+        success: { color: '#00FF80' },
+        warning: { color: '#ffa500' },
+        error: { color: '#ff4500' },
+        critical: { color: '#ff00ff' },
+      },
+    });
+
+    console.log("Using Hex colors")
+
+    // Utilisation
+    Logger.info("Hello from Color Logger!");
+    Logger.success("It works in the browser too!");
+    Logger.warn("Here is some warning");
+    Logger.error("Oof! Something went wrong");
+    Logger.critical("🚨 This is critical!");
+  </script>
+</body>
+
+</html>
