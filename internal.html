@@ -14,7 +14,13 @@
     // Please note that you need to build it first :) 
     import { Logger } from './dist/index.mjs';
 
-    Logger.info(`${typeof window}`);
+    console.log("Base values")
+    Logger.info("Hello from Color Logger!");
+    Logger.success("It works in the browser too!");
+    Logger.warn("Here is some warning");
+    Logger.error("Oof! Something went wrong");
+    Logger.critical("🚨 This is critical!");
+
     Logger.config({
       timestamp: {
         lang: 'fr'
@@ -29,18 +35,8 @@
       }
     });
 
-    // TrueColor
-    Logger.config({
-      levels: {
-        info: { color: '\x1b[38;2;0;128;255m' }, // Soft blue
-        success: { color: '\x1b[38;2;0;255;128m' }, // Lime green
-        warning: { color: '\x1b[38;2;255;165;0m' }, // Orange
-        error: { color: '\x1b[38;2;255;69;0m' }, // Red-orange
-        critical: { color: '\x1b[38;2;255;0;255m' }, // Magenta
-      },
-    });
-
-
+    console.log("swapping to true color")
+    Logger.usePalette("trueColor")
     Logger.info("Hello from Color Logger!");
     Logger.success("It works in the browser too!");
     Logger.warn("Here is some warning");

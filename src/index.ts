@@ -1,4 +1,4 @@
-import { defaultLoggerConfig } from './defaultConfig';
+import { defaultLoggerConfig, defaultPalette } from './defaultConfig';
 import { LoggerConfig } from './types';
 import { deepMerge, DeepPartial, hexToAnsi, isHexColor } from './utils';
 
@@ -17,6 +17,26 @@ export class Logger {
 
   static config(options: DeepPartial<LoggerConfig>) {
     this._config = deepMerge(this._config, options);
+  }
+
+  static usePalette(palette: string) {
+    const colorPalette = defaultPalette[palette];
+
+    if (!colorPalette) {
+      return;
+    }
+
+    this.config({
+      levels: {
+        info: { color: colorPalette.info },
+        warning: { color: colorPalette.warning },
+        error: { color: colorPalette.error },
+        success: { color: colorPalette.success },
+        critical: { color: colorPalette.critical },
+      },
+    });
+
+    return this;
   }
 
   static info(message: string) {

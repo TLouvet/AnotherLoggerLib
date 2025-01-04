@@ -58,11 +58,11 @@ Logger.config({
     lang: 'en', // Locale for the timestamp
   },
   levels: {
-    info: { active: true, prefix: '[INFO]', color: '\x1b[34m' }, // Base ANSI Colors
+    info: { active: true, prefix: '[INFO]', color: '\x1b[36m' },
     success: { active: true, prefix: '[SUCCESS]', color: '\x1b[32m' },
     warning: { active: true, prefix: '[WARNING]', color: '\x1b[33m' },
     error: { active: true, prefix: '[ERROR]', color: '\x1b[31m' },
-    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[38;2;255;0;255m' }, // TrueColor (24-bit ANSI)
+    critical: { active: true, prefix: '[CRITICAL]', color: '\x1b[35m' },
   },
 });
 ```
@@ -89,6 +89,14 @@ Logger.config({
 ### 🎨 **Color Customization**
 
 ColorLogger uses ANSI escape codes for coloring your logs. You can customize the colors for each log level by modifying the `color` property in the configuration.
+The initial configuration comes equiped with 2 default palettes. One with Common ANSI Color Codes, one with TrueColor codes. To ensure maximum compatibility, the
+Common ANSI palette is used, but switching is easy (v0.2.1+):
+
+```typescript
+Logger.usePalette('trueColor');
+// Alternatively, to go back to the standard palette:
+Logger.usePalette('common');
+```
 
 #### Common ANSI Color Codes
 

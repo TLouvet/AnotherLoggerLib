@@ -1,5 +1,22 @@
 import { LoggerConfig } from './types';
 
+export const defaultPalette: Record<string, Record<string, string>> = {
+  common: {
+    info: '\x1b[36m', // Cyan
+    success: '\x1b[32m', // Green
+    warning: '\x1b[33m', // Yellow
+    error: '\x1b[31m', // Red
+    critical: '\x1b[35m', // Magenta
+  },
+  trueColor: {
+    info: '\x1b[38;2;0;183;235m',
+    success: '\x1b[38;2;72;201;176m',
+    warning: '\x1b[38;2;255;165;0m',
+    error: '\x1b[38;2;244;67;54m',
+    critical: '\x1b[38;2;255;0;255m',
+  },
+};
+
 export const defaultLoggerConfig: LoggerConfig = {
   showLevelPrefix: true,
   timestamp: {
@@ -10,27 +27,27 @@ export const defaultLoggerConfig: LoggerConfig = {
     info: {
       active: true,
       prefix: '[INFO]',
-      color: '\x1b[34m',
+      color: defaultPalette.common.info,
     },
     success: {
       active: true,
       prefix: '[SUCCESS]',
-      color: '\x1b[32m',
+      color: defaultPalette.common.success,
     },
     warning: {
       active: true,
       prefix: '[WARNING]',
-      color: '\x1b[33m',
+      color: defaultPalette.common.warning,
     },
     error: {
       active: true,
       prefix: '[ERROR]',
-      color: '\x1b[31m',
+      color: defaultPalette.common.error,
     },
     critical: {
       active: true,
       prefix: '[CRITICAL]',
-      color: '\x1b[38;2;255;0;255m',
+      color: defaultPalette.common.critical,
     },
   },
 } as const;
