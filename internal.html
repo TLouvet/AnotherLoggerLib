@@ -55,8 +55,23 @@
     });
 
     console.log("Using Hex colors")
+    Logger.info("Hello from Color Logger!");
+    Logger.success("It works in the browser too!");
+    Logger.warn("Here is some warning");
+    Logger.error("Oof! Something went wrong");
+    Logger.critical("🚨 This is critical!");
 
-    // Utilisation
+    // RGB
+    console.log("Using RGB")
+    Logger.config({
+      levels: {
+        info: { color: ["0", "255", "255"] },
+        success: { color: [0, 255, 128] },
+        warning: { color: [255, 165, 0] },
+        error: { color: [255, 69, 0] },
+        critical: { color: [255, 0, 255] },
+      },
+    });
     Logger.info("Hello from Color Logger!");
     Logger.success("It works in the browser too!");
     Logger.warn("Here is some warning");

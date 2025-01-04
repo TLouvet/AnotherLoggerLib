@@ -7,12 +7,14 @@ export type LoggerConfig = {
   levels: LogLevels;
 };
 
+export type RGBColor = [number, number, number];
+
 type LogLevels = Record<LogLevel, LogConfig>;
 
 type LogLevel = 'info' | 'success' | 'warning' | 'error' | 'critical';
 
 type LogConfig = {
-  color: string;
+  color: string | RGBColor;
   active: boolean;
   prefix: string;
 };

@@ -94,6 +94,17 @@ Common ANSI palette is used, but switching is easy (v0.2.1+):
 
 ```typescript
 Logger.usePalette('trueColor');
+
+/*
+  trueColor: {
+    info: '\x1b[38;2;0;255;255m',
+    success: '\x1b[38;2;72;201;176m',
+    warning: '\x1b[38;2;255;165;0m',
+    error: '\x1b[38;2;244;67;54m',
+    critical: '\x1b[38;2;255;0;255m',
+  }
+*/
+
 // Alternatively, to go back to the standard palette:
 Logger.usePalette('common');
 ```
@@ -154,7 +165,15 @@ You can opt to use colors in a hex format instead of an ANSI escape code. Here a
 The TrueColor system works as follows: `\x1b[38;2;${red};${green};${blue}m` so when we use Hex colors, we first transform them into their RGB versions and then create the
 TrueColor value associated.
 
-Naturally, you can bypass this step by using RGB system for your colors in the first place. The expected syntax is an array with 3 entries corresponding to red, green and blue.
+Naturally, you can bypass this step by using RGB system for your colors in the first place. The expected syntax is a number array with 3 entries corresponding to red, green and blue.
+
+```typescript
+Logger.config({
+  levels: {
+    info: { color: [0, 255, 255] }, // will produce cyan output
+  },
+});
+```
 
 For reference, here are the inputs for the basic colors:
 

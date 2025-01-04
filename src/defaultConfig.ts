@@ -1,6 +1,6 @@
-import { LoggerConfig } from './types';
+import { LoggerConfig, RGBColor } from './types';
 
-export const defaultPalette: Record<string, Record<string, string>> = {
+export const defaultPalette: Record<string, Record<string, string | RGBColor>> = {
   common: {
     info: '\x1b[36m', // Cyan
     success: '\x1b[32m', // Green
@@ -9,7 +9,7 @@ export const defaultPalette: Record<string, Record<string, string>> = {
     critical: '\x1b[35m', // Magenta
   },
   trueColor: {
-    info: '\x1b[38;2;0;183;235m',
+    info: '\x1b[38;2;0;255;255m',
     success: '\x1b[38;2;72;201;176m',
     warning: '\x1b[38;2;255;165;0m',
     error: '\x1b[38;2;244;67;54m',
