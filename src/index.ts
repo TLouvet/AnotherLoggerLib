@@ -48,6 +48,9 @@ export class Logger {
   }
 
   static neutral(message: string) {
+    if (!this._config.active) {
+      return;
+    }
     console.log(message);
   }
 
