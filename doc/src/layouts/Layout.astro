@@ -1,0 +1,93 @@
+---
+import Nav from '../components/Nav.astro';
+import '@fontsource/Roboto';
+import '@fontsource/inter';
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Color Logger Docs</title>
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <div class='container'>
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    height: 100vh;
+    font-family: 'Roboto', 'sans-serif';
+    background-color: #10120f;
+    color: #ebebeb;
+  }
+
+  main {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .container {
+    max-width: 1024px;
+    margin: auto;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 36px;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin-block: 25px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Inter', 'sans-serif';
+    color: #fd8b2e;
+  }
+
+  strong {
+    color: #fd9743;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 5px;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  pre {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  code {
+    font-size: 14px;
+  }
+</style>

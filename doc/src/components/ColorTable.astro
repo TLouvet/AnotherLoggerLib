@@ -1,0 +1,75 @@
+---
+const headers = ['Color', 'Code', 'Example'];
+---
+
+<table class='color-table'>
+  <thead>
+    <tr>
+      {headers.map((h) => <th>{h}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Black</td>
+      <td><code>\x1b[30m</code></td>
+      <td style='color: black;'>Black</td>
+    </tr>
+    <tr>
+      <td>Red</td>
+      <td><code>\x1b[31m</code></td>
+      <td style='color: red;'>Red</td>
+    </tr>
+    <tr>
+      <td>Green</td>
+      <td><code>\x1b[32m</code></td>
+      <td style='color: green;'>Green</td>
+    </tr>
+    <tr>
+      <td>Yellow</td>
+      <td><code>\x1b[33m</code></td>
+      <td style='color: yellow;'>Yellow</td>
+    </tr>
+    <tr>
+      <td>Blue</td>
+      <td><code>\x1b[34m</code></td>
+      <td style='color: blue;'>Blue</td>
+    </tr>
+    <tr>
+      <td>Magenta</td>
+      <td><code>\x1b[35m</code></td>
+      <td style='color: magenta;'>Magenta</td>
+    </tr>
+    <tr>
+      <td>Cyan</td>
+      <td><code>\x1b[36m</code></td>
+      <td style='color: cyan;'>Cyan</td>
+    </tr>
+    <tr>
+      <td>White</td>
+      <td><code>\x1b[37m</code></td>
+      <td style='color: white;'>White</td></tr
+    >
+  </tbody>
+</table>
+
+<style>
+  .color-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+  }
+
+  .color-table th,
+  .color-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+
+  .color-table td code {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+</style>

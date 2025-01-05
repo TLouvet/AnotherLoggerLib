@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ConfigForm from '../components/ConfigForm.astro';
+import Button from '../ui/Button.astro';
+---
+
+<Layout>
+  <h2>🛠️ Configuration Generator</h2>
+  <p>
+    Use this generator to fully customize your Logger configuration. You can adjust settings for each log level,
+    including <strong>color</strong>, <strong>background</strong>, <strong>prefix</strong>, and
+    <strong>active</strong> status. Global settings like timestamps and prefixes are also included.
+  </p>
+  <ConfigForm />
+
+  <h3>Generated Configuration</h3>
+  <pre
+    style='background-color:#24292e;color:#e1e4e8; overflow-x: auto;'><code id="advanced-generated-config">
+        <!-- The generated configuration will appear here -->
+  </code></pre>
+
+  <div class='btn-container'>
+    <Button id='copy-config-button'>Copy Configuration</Button>
+  </div>
+</Layout>
+
+<script>
+  document.getElementById('copy-config-button')?.addEventListener('click', () => {
+    const configElement = document.getElementById('advanced-generated-config');
+    if (configElement && configElement.textContent) {
+      navigator.clipboard
+        .writeText(configElement.textContent)
+        .then(() => {
+          alert('Configuration copied to clipboard!');
+        })
+        .catch((err) => {
+          console.error('Failed to copy configuration: ', err);
+        });
+    }
+  });
+</script>
+
+<style>
+  .btn-container {
+    padding-top: 20px;
+    text-align: end;
+  }
+</style>

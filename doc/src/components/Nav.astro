@@ -1,0 +1,77 @@
+---
+const links = [
+  {
+    href: '/',
+    label: 'About',
+  },
+  {
+    href: '/api',
+    label: 'Logger Levels',
+  },
+  {
+    href: '/configuration',
+    label: 'Configuration',
+  },
+  {
+    href: '/colors',
+    label: 'Colors',
+  },
+
+  {
+    href: '/generator',
+    label: 'Configuration Generator',
+  },
+];
+---
+
+<aside>
+  <nav>
+    <h1>Color Logger</h1>
+    <hr />
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
+
+<style>
+  aside {
+    width: 320px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  @media screen and (width < 1200px) {
+    aside {
+      width: 250px;
+    }
+  }
+
+  nav ul {
+    padding: 0;
+    padding-top: 30px;
+    list-style: none;
+  }
+
+  nav ul li a {
+    color: white;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    background-color: #555;
+    color: #ff8728;
+  }
+</style>

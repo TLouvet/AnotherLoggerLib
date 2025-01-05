@@ -1,0 +1,194 @@
+---
+import Button from '../ui/Button.astro';
+import { locales, levels } from '../data/generator';
+---
+
+<form>
+  <fieldset>
+    <legend>Global Settings</legend>
+    <label>
+      <input type='checkbox' name='global-prefix' checked />
+      Enable Level Prefixes
+    </label>
+    <label>
+      <input type='checkbox' name='global-enable' checked />
+      Logger enabled at start
+    </label>
+    <label>
+      <input type='checkbox' name='timestamp-active' checked />
+      Enable Timestamps
+    </label>
+
+    <label for='timestamp-lang'>Timestamp Language:</label>
+    <select id='timestamp-lang' name='timestamp-lang'>
+      {locales.map((l) => <option value={l.value}>{l.label}</option>)}
+    </select>
+  </fieldset>
+
+  <fieldset>
+    <legend>Log Levels</legend>
+
+    <div class='grid'>
+      {
+        levels.map((l) => (
+          <div class='log-level' data-level={l.label.toLowerCase()}>
+            <h3>
+              <label>
+                {l.label} <input type='checkbox' name={`${l.label}-enable`} checked />
+              </label>
+            </h3>
+
+            <div class='form-group'>
+              <label for={`prefix-${l.label}`}>Prefix:</label>
+              <input type='text' value={l.prefix} name={`${l.label}-prefix`} id={`prefix-${l.label}`} />
+            </div>
+            <div class='form-group'>
+              <label for={`text-${l.label}`}>Color:</label>
+              <input id={`text-${l.label}`} type='text' name={`${l.label}-text`} value={l.color} />
+              <p class='helper'>Hex, [R,G,B] or Ansi code</p>
+            </div>
+
+            <div class='form-group'>
+              <label for={`bg-${l.label}`}>Background Color:</label>
+              <input id={`bg-${l.label}`} type='text' name={`${l.label}-bg`} />
+              <p class='helper'>Hex, [R,G,B] or Ansi code</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </fieldset>
+
+  <div class='btn-container'>
+    <Button type='submit'>Generate Configuration (a demo will appear in the console after generation)</Button>
+  </div>
+</form>
+
+<script>
+  import { Logger } from '@cptn-tlouvet/color-logger';
+
+  document.querySelector('form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const form = event.target! as HTMLFormElement;
+    const showLevelPrefix = form['global-prefix'].checked;
+    const active = form['global-enable'].checked;
+    const timestampActive = form['timestamp-active'].checked;
+    const timestampLang = form['timestamp-lang'].value;
+
+    const levels: Record<string, any> = {};
+    document.querySelectorAll('.log-level').forEach((level) => {
+      const { level: l } = (level as any).dataset;
+      const levelName = l[0].toUpperCase() + l.slice(1);
+      const active = (level.querySelector(`input[name="${levelName}-enable"]`)! as HTMLInputElement).checked;
+      const prefix = (level.querySelector(`input[name="${levelName}-prefix"]`)! as HTMLInputElement).value;
+      const textColor =
+        (level.querySelector(`input[name="${levelName}-text"]`)! as HTMLInputElement).value || undefined;
+      const bgColor = (level.querySelector(`input[name="${levelName}-bg"]`)! as HTMLInputElement).value || undefined;
+
+      const formatColor = (c?: string) => {
+        if (!c) {
+          return;
+        }
+
+        if (c.startsWith('\\x1b')) {
+          console.log(c);
+
+          return '\x1b' + c.slice(4);
+        }
+
+        if (c.startsWith('[')) {
+          return c.split(',').map((e) => parseInt(e.replace('[', '').replace(']', '')));
+        }
+
+        return c;
+      };
+
+      const formattedText = formatColor(textColor);
+
+      levels[l] = {
+        active,
+        prefix,
+        ...(textColor ? { color: formattedText } : {}),
+        ...(bgColor ? { bg: bgColor } : {}),
+      };
+    });
+
+    const loggerConfig = {
+      showLevelPrefix,
+      active,
+      timestamp: {
+        active: timestampActive,
+        lang: timestampLang,
+      },
+      levels,
+    };
+
+    const preElement = document.getElementById('advanced-generated-config')!;
+    preElement.textContent = `Logger.config(${JSON.stringify(loggerConfig, null, 2).replaceAll('\u001b', '\x1b')});`;
+
+    Logger.neutral('Using New Config');
+    Logger.config(loggerConfig);
+    Logger.info('Testing info log');
+    Logger.success('Testing success log');
+    Logger.warn('Testing warn log');
+    Logger.error('Testing error log');
+    Logger.critical('Testing critical log');
+  });
+</script>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .log-level {
+    padding-block: 15px;
+    h3 {
+      margin: 0;
+      margin-bottom: 5px;
+    }
+  }
+
+  input {
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+  }
+
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  label {
+    margin-right: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+
+  .btn-container {
+    padding-top: 20px;
+    text-align: end;
+  }
+
+  .helper {
+    font-size: 12px;
+    margin: 2px;
+  }
+</style>

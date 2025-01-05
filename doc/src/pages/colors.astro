@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ColorTable from '../components/ColorTable.astro';
+import { Content } from '../content/colors.md';
+---
+
+<Layout>
+  <h2>&#x1f3a8; How to use Colors</h2>
+  <p>
+    ColorLogger leverages <a href='https://en.wikipedia.org/wiki/ANSI_escape_code#Colors' target='_blank'
+      >ANSI escape codes</a
+    > to bring vibrant colors to your console. Depending on your terminal, you can use either common ANSI colors or the extended
+    <strong>TrueColor system</strong> for more flexibility.
+  </p>
+
+  <h3>Common ANSI Codes</h3>
+  <p>These colors are supported by virtually all terminals. Here are the available options:</p>
+  <ColorTable />
+
+  <Content />
+</Layout>
+
+<style>
+  a {
+    color: #ff8728;
+    text-decoration: underline;
+  }
+</style>

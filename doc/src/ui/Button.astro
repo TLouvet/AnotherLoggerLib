@@ -1,0 +1,31 @@
+---
+const { id } = Astro.props;
+---
+
+<button id={id}><slot /></button>
+
+<style>
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fd8b2e;
+    background-color: #10120f;
+    border: 2px solid #fd8b2e;
+
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #fd8b2e;
+      color: #10120f;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px #fd8b2e;
+    }
+  }
+</style>
