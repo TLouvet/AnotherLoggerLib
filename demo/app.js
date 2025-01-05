@@ -149,8 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
       levels,
     };
 
-    console.log("co", config.levels)
-
     // Apply configuration to Logger
     Logger.config(config);
 
