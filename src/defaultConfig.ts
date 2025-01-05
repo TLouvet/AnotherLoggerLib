@@ -19,6 +19,7 @@ export const defaultPalette: Record<string, Record<string, string | RGBColor>> =
 
 export const defaultLoggerConfig: LoggerConfig = {
   showLevelPrefix: true,
+  active: true,
   timestamp: {
     lang: 'en',
     active: true,

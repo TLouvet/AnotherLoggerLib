@@ -9,3 +9,5 @@ tsconfig.json
 TODO
 LICENSE
 demo
+.gitignore
+doc

@@ -1,4 +1,5 @@
 export type LoggerConfig = {
+  active: boolean;
   timestamp: {
     lang: string;
     active: boolean;

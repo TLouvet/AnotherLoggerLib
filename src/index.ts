@@ -39,6 +39,14 @@ export class Logger {
     });
   }
 
+  static disable() {
+    this._config.active = false;
+  }
+
+  static enable() {
+    this._config.active = true;
+  }
+
   static neutral(message: string) {
     console.log(message);
   }
@@ -64,7 +72,7 @@ export class Logger {
   }
 
   private static log(level: ELogLevel, message: string) {
-    if (!this.isLevelActive(level)) {
+    if (!this._config.active || !this.isLevelActive(level)) {
       return;
     }
 

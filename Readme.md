@@ -56,6 +56,7 @@ Here's the default configuration out of the box:
 ```typescript
 Logger.config({
   showLevelPrefix: true,
+  active: true, // v0.5+
   timestamp: {
     active: true,
     lang: 'en', // Locale for the timestamp
@@ -69,6 +70,20 @@ Logger.config({
   },
 });
 ```
+
+#### Enable / Disable
+
+The logger has two levels of activation. One is global (v0.5+), and can be toggled with functions as `Logger.enable()` and `Logger.disable()` which are equivalent to :
+
+```typescript
+Logger.config({ active: true });
+Logger.config({ active: false });
+```
+
+This level can be useful in a context where you want to have some console.log in a dev environment but want to shut them completely in production.
+
+Ths other level is the single loglevel disabling via the config function.
+Use it to disable specific logs type that you don't want to use in your projet or that you don't need at the moment.
 
 #### Customize What You Need
 
