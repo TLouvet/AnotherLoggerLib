@@ -117,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Global settings
     const showPrefix = document.getElementById("show-prefix").checked;
     const enableTimestamps = document.getElementById("enable-timestamps").checked;
+    const enableLogger = document.getElementById("enable-logger").checked;
     const timestampLang = document.getElementById("timestamp-lang").value;
 
     // Log levels
@@ -140,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Construct the configuration object
     const config = {
       showLevelPrefix: showPrefix,
+      active: enableLogger,
       timestamp: {
         active: enableTimestamps,
         lang: timestampLang,
