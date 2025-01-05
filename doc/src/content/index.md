@@ -14,6 +14,27 @@ With vibrant colors, structured levels, and customization options, your logs wil
 
 ### ✨ Get Started in Seconds
 
+Install the package with
+
+```
+npm i @cptn-tlouvet/color-logger
+```
+
+or
+
+```
+yarn add @cptn-tlouvet/color-logger
+
+```
+
+Run your first updated console.log easily:
+
+```typescript
+import { Logger } from '@cptn-tlouvet/color-logger';
+
+Logger.info('This is an info log');
+```
+
 Dive into the sections on the left to explore how to set up and customize ColorLogger for your project.
 
 You'll find examples, configuration tips, and interactive demos to showcase its capabilities.
