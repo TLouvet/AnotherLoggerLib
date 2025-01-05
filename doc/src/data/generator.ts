@@ -22,12 +22,12 @@ export const levels = [
   {
     label: 'Success',
     prefix: '[SUCCESS]',
-    color: '[0,255,0]',
+    color: '#00FF00',
   },
   {
     label: 'Warning',
     prefix: '[WARNING]',
-    color: '\x1b[33m',
+    color: '#FFFF00',
   },
   {
     label: 'Error',
@@ -37,6 +37,6 @@ export const levels = [
   {
     label: 'Critical',
     prefix: '[CRITICAL]',
-    color: '\x1b[35m',
+    color: '#FF00FF',
   },
 ];
