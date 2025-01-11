@@ -76,20 +76,20 @@ export class Logger {
     this.log(ELogLevel.INFO, ...list);
   }
 
-  static success(message: string) {
-    this.log(ELogLevel.SUCCESS, message);
+  static success(...list: any[]) {
+    this.log(ELogLevel.SUCCESS, ...list);
   }
 
-  static error(message: string) {
-    this.log(ELogLevel.ERROR, message);
+  static error(...list: any[]) {
+    this.log(ELogLevel.ERROR, ...list);
   }
 
-  static warn(message: string) {
-    this.log(ELogLevel.WARNING, message);
+  static warn(...list: any[]) {
+    this.log(ELogLevel.WARNING, ...list);
   }
 
-  static critical(message: string) {
-    this.log(ELogLevel.CRITICAL, message);
+  static critical(...list: any[]) {
+    this.log(ELogLevel.CRITICAL, ...list);
   }
 
   private static log(level: ELogLevel, ...list: any[]) {
