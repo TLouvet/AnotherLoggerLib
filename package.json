@@ -32,10 +32,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TLouvet/AnotherLoggerLib.git"
+    "url": "git+https://github.com/TLouvet/ColorLogger.git"
   },
   "bugs": {
-    "url": "https://github.com/TLouvet/AnotherLoggerLib/issues"
+    "url": "https://github.com/TLouvet/ColorLogger/issues"
   },
-  "homepage": "https://tlouvet.github.io/AnotherLoggerLib"
+  "homepage": "https://tlouvet.github.io/ColorLogger"
 }
