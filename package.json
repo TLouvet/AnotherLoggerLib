@@ -21,6 +21,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --minify",
+    "start": "node ./dist/index.js",
     "test": "vitest",
     "clean": "rm -rf dist"
   },

@@ -2,6 +2,7 @@ import { defaultLoggerConfig, defaultPalette } from './defaultConfig';
 import { LoggerConfig } from './types';
 import { deepMerge, DeepPartial } from './utils';
 import { AnsiColorFormatter } from './colors';
+import { MessageFormatter } from './MessageFormatter';
 
 enum ELogLevel {
   WARNING = 'warning',
@@ -14,11 +15,16 @@ enum ELogLevel {
 export class Logger {
   private static _config: LoggerConfig = defaultLoggerConfig;
   private static readonly colorFormatter = new AnsiColorFormatter();
+  private static readonly messageFormatter = new MessageFormatter();
 
   private constructor() {}
 
   static config(options: DeepPartial<LoggerConfig>) {
     this._config = deepMerge(this._config, options);
+  }
+
+  static setMaximumDepth(depth: number) {
+    this.messageFormatter.setMaxDepth(depth);
   }
 
   static usePalette(palette: string) {
@@ -47,15 +53,27 @@ export class Logger {
     this._config.active = true;
   }
 
-  static neutral(message: string) {
+  static neutral(...list: any[]) {
     if (!this._config.active) {
       return;
     }
-    console.log(message);
+    console.log(...list);
   }
 
-  static info(message: string) {
-    this.log(ELogLevel.INFO, message);
+  /**
+   * Call to console.table, works the same way
+   * @link https://developer.mozilla.org/fr/docs/Web/API/console/table_static
+   */
+  static table(data: any, tableOptions: any) {
+    if (!this._config.active) {
+      return;
+    }
+
+    return console.table(data, tableOptions);
+  }
+
+  static info(...list: any[]) {
+    this.log(ELogLevel.INFO, ...list);
   }
 
   static success(message: string) {
@@ -74,21 +92,23 @@ export class Logger {
     this.log(ELogLevel.CRITICAL, message);
   }
 
-  private static log(level: ELogLevel, message: string) {
+  private static log(level: ELogLevel, ...list: any[]) {
     if (!this._config.active || !this.isLevelActive(level)) {
       return;
     }
 
     const { color, bg } = this._config.levels[level];
-    console.log(this.colorFormatter.colorize(this.formatTextMessage(level, message), color, bg));
+    console.log(this.colorFormatter.colorize(this.formatTextMessage(level, ...list), color, bg));
   }
 
   private static isLevelActive(level: ELogLevel) {
     return this._config.levels[level].active;
   }
 
-  private static formatTextMessage(level: ELogLevel, message: string) {
-    const baseMessage = `${this.timestamp()} ${message}`;
+  private static formatTextMessage(level: ELogLevel, ...args: any[]) {
+    const timestamp = this.timestamp();
+    const message = this.messageFormatter.format(...args);
+    const baseMessage = `${timestamp} ${message}`;
 
     if (!this._config.showLevelPrefix) {
       return baseMessage;
